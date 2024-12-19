@@ -1,6 +1,6 @@
 # Apache Ranger Docker Deployment
 
-This repository contains configuration for deploying Apache Ranger 2.4.0 using Docker specifically for x86_64/AMD64 systems. 
+This repository contains configuration for deploying Apache Ranger 2.4.0 using Docker **specifically for x86_64/AMD64 systems.**
 
 Due to the current availability of Apache Ranger 2.4.0 Docker images being only for ARM64, this guide includes necessary steps for running these images on x86_64 architecture using emulation.
 If you're running on ARM64 architecture (like Apple Silicon), you should follow the simpler deployment process described in the official Apache Ranger Docker Hub repository: https://hub.docker.com/r/apache/ranger
