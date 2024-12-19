@@ -1,0 +1,43 @@
+services:
+  ranger-zk:
+    image: apache/ranger-zk:2.4.0
+    container_name: ranger-zk
+    platform: linux/arm64/v8
+    networks:
+      - rangernw
+    ports:
+      - "2181:2181"
+  ranger-solr:
+    image: apache/ranger-solr:2.4.0
+    container_name: ranger-solr
+    platform: linux/arm64/v8
+    networks:
+      - rangernw
+    ports:
+      - "8983:8983"
+  ranger-db:
+    image: apache/ranger-db:2.4.0
+    container_name: ranger-db
+    platform: linux/arm64/v8
+    networks:
+      - rangernw
+    environment:
+      - RANGER_DB_TYPE=postgres
+    healthcheck:
+      test: "pg_isready -q"
+      interval: 10s
+      retries: 30
+      start_period: 20s
+  ranger:
+    image: apache/ranger:2.4.0
+    container_name: ranger
+    platform: linux/arm64/v8
+    networks:
+      - rangernw
+    environment:
+      - RANGER_DB_TYPE=postgres
+    ports:
+      - "6080:6080"
+networks:
+  rangernw:
+    driver: bridge
